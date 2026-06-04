@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="Terminal"
+        android:key="cat_terminal">
+
+        <SeekBarPreference
+            android:key="pref_font_size"
+            android:title="Font Size"
+            android:summary="Terminal text size (8-24 sp)"
+            android:defaultValue="13"
+            android:max="24"
+            app:min="8"
+            app:showSeekBarValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="pref_keep_screen_on"
+            android:title="Keep Screen On"
+            android:summary="Prevent sleep during terminal sessions"
+            android:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            android:key="pref_vibrate_on_key"
+            android:title="Vibrate on Keypress"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Kali Environment"
+        android:key="cat_kali">
+
+        <EditTextPreference
+            android:key="pref_kali_mirror"
+            android:title="APT Mirror"
+            android:summary="Default: http://http.kali.org/kali"
+            android:defaultValue="http://http.kali.org/kali" />
+
+        <ListPreference
+            android:key="pref_default_shell"
+            android:title="Default Shell"
+            android:entries="@array/shell_entries"
+            android:entryValues="@array/shell_values"
+            android:defaultValue="/bin/bash" />
+
+        <Preference
+            android:key="pref_reset_bootstrap"
+            android:title="Reset Kali Environment"
+            android:summary="Delete rootfs and re-download (~500 MB)" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="About"
+        android:key="cat_about">
+
+        <Preference
+            android:key="pref_about"
+            android:title="KaliDroid v1.0.0"
+            android:summary="Developer: Rotlqe | github.com/Rotlqe" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

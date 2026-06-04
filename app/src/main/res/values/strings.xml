@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KaliDroid</string>
+    <string name="settings_title">Settings</string>
+    <string name="about_title">About KaliDroid</string>
+    <string name="developer_github">https://github.com/Rotlqe</string>
+    <string name="developer_email">s.pi@outlook.sa</string>
+    <string name="app_version">1.0.0</string>
+    <string name="notification_channel_download">Package Downloads</string>
+    <string name="notification_channel_bootstrap">Bootstrap Setup</string>
+    <string name="notification_channel_session">Terminal Session</string>
+    <string name="pref_header_terminal">Terminal</string>
+    <string name="pref_header_kali">Kali Environment</string>
+    <string name="pref_header_about">About</string>
+    <string name="pref_font_size_title">Font Size</string>
+    <string name="pref_keep_screen_on_title">Keep Screen On</string>
+    <string name="pref_keep_screen_on_summary">Prevent screen from turning off during sessions</string>
+    <string name="pref_kali_mirror_title">Kali Mirror</string>
+    <string name="pref_kali_mirror_summary">APT mirror URL for package downloads</string>
+    <string name="pref_history_size_title">Command History Size</string>
+    <string name="pref_reset_bootstrap_title">Reset Kali Environment</string>
+    <string name="pref_reset_bootstrap_summary">Delete rootfs and re-download from scratch</string>
+    <string name="pref_about_title">About KaliDroid</string>
+</resources>

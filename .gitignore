@@ -1,0 +1,39 @@
+# KaliDroid .gitignore
+# Developer: Rotlqe | https://github.com/Rotlqe
+
+# Build output
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# APK outputs
+*.apk
+*.aab
+*.ap_
+
+# Signing keys (never commit!)
+*.jks
+*.keystore
+keystore.properties
+
+# NDK
+obj/
+libs/
+
+# Generated sources
+app/src/main/assets/bin/proot
+app/src/main/assets/bin/busybox
+
+# Logs
+*.log
+
+# Test results
+test-results/
+lint-results/

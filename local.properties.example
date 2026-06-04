@@ -1,0 +1,12 @@
+# KaliDroid - local.properties EXAMPLE
+# Copy this file to local.properties and fill in your paths.
+# DO NOT commit local.properties to git.
+
+# Android SDK path
+sdk.dir=/home/YOUR_USERNAME/Android/Sdk
+
+# Android NDK path (must be exactly 26.3.11579264)
+ndk.dir=/home/YOUR_USERNAME/Android/Sdk/ndk/26.3.11579264
+
+# CMake path (must be exactly 3.22.1)
+cmake.dir=/home/YOUR_USERNAME/Android/Sdk/cmake/3.22.1

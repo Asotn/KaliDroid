@@ -1,0 +1,24 @@
+GRADLE WRAPPER JAR - PLACEHOLDER
+=================================
+
+The file `gradle-wrapper.jar` is required for `./gradlew` to work.
+It is not included in this repository because it is a binary file.
+
+To obtain it, run ONE of the following:
+
+Option 1 - Use Android Studio:
+  Open the project in Android Studio. It will download the wrapper automatically.
+
+Option 2 - Use Gradle:
+  gradle wrapper --gradle-version 8.6
+
+Option 3 - Download directly:
+  wget https://github.com/gradle/gradle/releases/download/v8.6.0/gradle-8.6-bin.zip
+  The wrapper jar is inside the zip at: gradle-8.6/lib/gradle-launcher-8.6.jar
+  Rename it to gradle-wrapper.jar and place it in gradle/wrapper/
+
+Option 4 - Copy from an existing Android project:
+  cp /path/to/other-project/gradle/wrapper/gradle-wrapper.jar gradle/wrapper/
+
+After placing the jar, the project builds with:
+  ./gradlew assembleDebug

@@ -1,0 +1,24 @@
+// KaliDroid - Root build.gradle
+// Open-source Kali Linux terminal for Android
+// Developer: Rotlqe | https://github.com/Rotlqe | s.pi@outlook.sa
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.3.2'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

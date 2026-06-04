@@ -1,0 +1,26 @@
+/*
+ * KaliDroid - Process Runner Header
+ * Developer : Rotlqe | https://github.com/Rotlqe | s.pi@outlook.sa
+ */
+
+#ifndef PROCESS_RUNNER_H
+#define PROCESS_RUNNER_H
+
+#include <stddef.h>
+
+int process_run(const char *path, const char *const argv[],
+                const char *const envp[],
+                char *out_buf, size_t out_buf_size,
+                int timeout_ms);
+
+int process_run_shell(const char *cmd, char *out_buf, size_t out_buf_size);
+
+int process_run_proot(const char *proot_bin, const char *rootfs,
+                       const char *cmd,
+                       char *out_buf, size_t out_buf_size);
+
+int process_check_exists(const char *path);
+
+int process_get_output_line(const char *cmd, char *line_buf, size_t line_buf_size);
+
+#endif /* PROCESS_RUNNER_H */

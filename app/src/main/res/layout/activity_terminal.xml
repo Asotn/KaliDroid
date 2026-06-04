@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    KaliDroid - Terminal Layout
+    Black background, extra-keys row, monospace input, scroll output.
+    Developer: Rotlqe | https://github.com/Rotlqe | s.pi@outlook.sa
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:background="#0D0D0D"
+        android:elevation="0dp"
+        app:titleTextColor="#CCCCCC"
+        app:subtitleTextColor="#666666" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        android:background="#000000"
+        android:overScrollMode="never">
+
+        <TextView
+            android:id="@+id/terminal_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textColor="#E0E0E0"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:lineSpacingMultiplier="1.1"
+            android:background="#000000"
+            android:textIsSelectable="true"
+            android:gravity="top|start" />
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#111111" />
+
+    <!-- Extra keys strip: ESC, Tab, Ctrl, |, /, arrows, etc. -->
+    <com.rotlqe.kalidroid.ui.ShellKeyboardView
+        android:id="@+id/shell_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#0A0A0A" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#111111" />
+
+    <!-- Input row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#080808"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textColor="#00FF77"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:paddingEnd="6dp" />
+
+        <EditText
+            android:id="@+id/command_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#E0E0E0"
+            android:textColorHint="#444444"
+            android:hint="enter command..."
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:background="@android:color/transparent"
+            android:imeOptions="actionDone|flagNoFullscreen|flagNoExtractUi"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp" />
+
+        <TextView
+            android:id="@+id/btn_clear_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textColor="#555555"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:paddingStart="8dp"
+            android:paddingEnd="4dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+</LinearLayout>
