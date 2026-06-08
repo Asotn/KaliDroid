@@ -1,7 +1,4 @@
-⚠️ This version is archived.
-The new version is here: [link]
-# KaliDroid 
-
+.# KaliDroid 
 **Kali Linux Terminal for Android**
 
 A real, open-source Kali Linux terminal emulator for Android. Runs the full Kali Linux environment via proot — no root required. Supports `apt`, `sudo`, and every terminal command in the world.
