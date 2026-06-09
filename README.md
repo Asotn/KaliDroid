@@ -5,7 +5,7 @@ A real, open-source Kali Linux terminal emulator for Android. Runs the full Kali
 | | |
 |---|---|
 | **Developer** | Rotlqe |
-| **GitHub** | https://github.com/Rotlqe |
+| **GitHub** | https://github.com/KaraAixm/KaliDroid |
 | **Email** | s.pi@outlook.sa |
 | **License** | GPL-3.0 |
 | **F-Droid** | Ready |
@@ -59,7 +59,7 @@ KaliDroid is not a fake terminal. It is a real application with:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Rotlqe/KaliDroid
+git clone https://github.com/KaraAixm/KaliDroid/KaliDroid
 cd KaliDroid
 
 # Build debug APK
