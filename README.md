@@ -1,4 +1,8 @@
 Hello, the project was archived but has been unarchived and updated. The next version of Calidroid will change many things, and we have rebuilt it. In a few days, the second alert will be issued, and the name will be changed. 
+The new developer of the warehouse is Asotn
+And it was dated 2027/1/1 The warehouse is being transferred to the institution. en.ag
+
+After the ownership of the warehouse was transferred 
 
 # KaliDroid **Kali Linux Terminal for Android**
 A real, open-source Kali Linux terminal emulator for Android. Runs the full Kali Linux environment via proot — no root required. Supports `apt`, `sudo`, and every terminal command in the world.
