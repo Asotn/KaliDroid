@@ -239,7 +239,7 @@ public class TerminalSession {
             } else {
                 nativeTerm.writeString(text);
             }
-        } catch (IOException | Exception e) {
+        } catch (Exception e) {
             Log.e(TAG, "sendInput error: " + e.getMessage());
         }
     }
@@ -252,7 +252,7 @@ public class TerminalSession {
             } else {
                 nativeTerm.write(data);
             }
-        } catch (IOException | Exception e) {
+        } catch (Exception e) {
             Log.e(TAG, "sendInput(bytes) error: " + e.getMessage());
         }
     }

@@ -80,11 +80,7 @@ public class TerminalView extends View {
 
     // Cursor blink handler
     private final Handler blinkHandler = new Handler(Looper.getMainLooper());
-    private final Runnable blinkRunnable = () -> {
-        cursorVisible = !cursorVisible;
-        invalidate();
-        blinkHandler.postDelayed(blinkRunnable, 500);
-    };
+    private Runnable blinkRunnable;
 
     // Callbacks
     public interface OnCellTapListener {
@@ -115,6 +111,12 @@ public class TerminalView extends View {
     // init
     // -------------------------------------------------------------------------
     private void init(Context context) {
+        blinkRunnable = () -> {
+            cursorVisible = !cursorVisible;
+            invalidate();
+            blinkHandler.postDelayed(blinkRunnable, 500);
+        };
+
         fontSize = AppPreferences.get(context).getFontSize();
 
         // Background paint
