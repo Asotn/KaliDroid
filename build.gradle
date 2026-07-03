@@ -1,22 +1,13 @@
-// VoidTerm - Root build.gradle
-// Open-source Kali Linux terminal for Android
-// Developer: Asotn | https://github.com/Asotn | s.pi@outlook.sa
-
+// VoidTerm - root build.gradle
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.3.2'
-    }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
 }
 
 task clean(type: Delete) {

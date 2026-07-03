@@ -13,6 +13,14 @@ import android.util.Log;
 
 import com.asotn.voidterm.utils.EnvironmentManager;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class VoidTermApp extends Application {
 
     private static final String TAG = "VoidTerm-App";
@@ -28,6 +36,8 @@ public class VoidTermApp extends Application {
         super.onCreate();
         instance = this;
 
+        installCrashHandler();
+
         // Wrap everything — the Application must never crash
         try {
             createNotificationChannels();
@@ -40,6 +50,50 @@ public class VoidTermApp extends Application {
         } catch (Throwable t) {
             Log.e(TAG, "EnvironmentManager init failed: " + t.getMessage());
         }
+    }
+
+    /**
+     * Writes any uncaught exception to a plain text file under the app's
+     * external files dir. No permissions required (scoped storage).
+     * Readable from Termux at:
+     *   ~/storage/shared/Android/data/com.asotn.voidterm/files/crash_log.txt
+     */
+    private void installCrashHandler() {
+        final Thread.UncaughtExceptionHandler defaultHandler =
+                Thread.getDefaultUncaughtExceptionHandler();
+
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            try {
+                File dir = getExternalFilesDir(null);
+                if (dir == null) dir = getFilesDir();
+                File logFile = new File(dir, "crash_log.txt");
+
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                pw.println("=== VoidTerm crash: " +
+                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()) + " ===");
+                pw.println("Device: " + Build.MANUFACTURER + " " + Build.MODEL);
+                pw.println("Android: " + Build.VERSION.RELEASE + " (SDK " + Build.VERSION.SDK_INT + ")");
+                pw.println("ABI: " + String.join(",", Build.SUPPORTED_ABIS));
+                pw.println("Thread: " + thread.getName());
+                pw.println();
+                throwable.printStackTrace(pw);
+                pw.println();
+
+                try (FileWriter fw = new FileWriter(logFile, true)) {
+                    fw.write(sw.toString());
+                }
+            } catch (Throwable ignored) {
+                // never let the crash handler itself crash
+            }
+
+            if (defaultHandler != null) {
+                defaultHandler.uncaughtException(thread, throwable);
+            } else {
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+            }
+        });
     }
 
     public static VoidTermApp getInstance() { return instance; }

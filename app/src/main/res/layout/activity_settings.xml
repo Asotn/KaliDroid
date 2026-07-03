@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000000">
+    android:background="@color/terminal_bg"
+    android:padding="16dp">
 
-    <FrameLayout
-        android:id="@+id/settings_container"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_kali_mirror_title"
+        android:textColor="@color/terminal_fg"
+        android:textSize="14sp"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:id="@+id/edit_mirror"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:textColor="@color/terminal_fg"
+        android:textSize="13sp"
+        android:inputType="textUri"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_font_size_title"
+        android:textColor="@color/terminal_fg"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp" />
+
+    <SeekBar
+        android:id="@+id/seek_font_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:min="10"
+        android:max="24" />
+
+    <CheckBox
+        android:id="@+id/check_keep_screen_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_keep_screen_on_title"
+        android:textColor="@color/terminal_fg"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Save" />
 
 </LinearLayout>

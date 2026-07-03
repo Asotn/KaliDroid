@@ -1,61 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#000000"
-    android:padding="24dp"
-    android:gravity="center_horizontal">
+    android:background="@color/terminal_bg">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="VoidTerm"
-        android:textColor="#00FF77"
-        android:textSize="28sp"
-        android:fontFamily="monospace"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingTop="32dp"
-        android:paddingBottom="8dp" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Kali Linux Terminal for Android"
-        android:textColor="#AAAAAA"
-        android:textSize="14sp"
-        android:fontFamily="monospace"
-        android:gravity="center"
-        android:paddingBottom="32dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/accent"
+            android:textSize="22sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Version: 26.2\nLicense: GPL-3.0\nF-Droid: Ready\n\nDeveloper: Asotn\nGitHub: github.com/Asotn\nEmail: s.pi@outlook.sa"
-        android:textColor="#CCCCCC"
-        android:textSize="13sp"
-        android:fontFamily="monospace"
-        android:lineSpacingMultiplier="1.5"
-        android:gravity="center"
-        android:paddingBottom="40dp" />
+        <TextView
+            android:id="@+id/text_about_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="monospace"
+            android:textColor="@color/terminal_fg"
+            android:textSize="13sp"
+            android:lineSpacingExtra="4dp" />
 
-    <Button
-        android:id="@+id/btn_github"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Open GitHub"
-        android:fontFamily="monospace"
-        android:layout_marginBottom="12dp"
-        style="@style/Widget.AppCompat.Button.Borderless" />
-
-    <Button
-        android:id="@+id/btn_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Send Email"
-        android:fontFamily="monospace"
-        style="@style/Widget.AppCompat.Button.Borderless" />
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -3,12 +3,22 @@
     android:width="24dp"
     android:height="24dp"
     android:viewportWidth="24"
-    android:viewportHeight="24">
-    <!-- Terminal prompt icon: "> _" -->
+    android:viewportHeight="24"
+    android:tint="#FFFFFF">
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M2,6 L2,8 L6,10 L2,12 L2,14 L9,10 Z" />
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M4,4 L4,20 L20,20 L20,4 Z M6,6 L18,6 L18,18 L6,18 Z"/>
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M10,13 L10,15 L18,15 L18,13 Z" />
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M8,9 L11,12 L8,15"/>
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M12,15 L16,15"/>
 </vector>

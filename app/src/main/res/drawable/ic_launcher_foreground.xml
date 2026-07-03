@@ -1,67 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    VoidTerm launcher icon - foreground layer
-    Terminal window with bold green "> _" prompt.
-    Designed for the 108dp canvas with 18dp safe-zone margins.
-    Readable down to 48x48 launcher display size.
-    Developer: Asotn | https://github.com/Asotn
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-
-    <!-- ── Terminal window frame ────────────────────────────────────── -->
-    <!-- Outer rounded rectangle — dark panel border -->
-    <path android:fillColor="#1C2333"
-          android:pathData="M16,16 Q16,12 20,12 L88,12 Q92,12 92,16 L92,92 Q92,96 88,96 L20,96 Q16,96 16,92 Z" />
-
-    <!-- Inner screen area — slightly different shade -->
-    <path android:fillColor="#0D1117"
-          android:pathData="M19,28 L89,28 L89,93 L19,93 Z" />
-
-    <!-- ── Title bar ────────────────────────────────────────────────── -->
-    <path android:fillColor="#21262D"
-          android:pathData="M16,16 Q16,12 20,12 L88,12 Q92,12 92,16 L92,28 L16,28 Z" />
-
-    <!-- Title bar dots (traffic-light style) -->
-    <!-- Red close dot -->
-    <path android:fillColor="#FF5F57"
-          android:pathData="M27,20 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
-    <!-- Yellow minimize dot -->
-    <path android:fillColor="#FEBC2E"
-          android:pathData="M39,20 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
-    <!-- Green maximize dot -->
-    <path android:fillColor="#28C840"
-          android:pathData="M51,20 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
-
-    <!-- ── Prompt line text → glow scanline effect ───────────────────── -->
-    <!-- Subtle scan lines for depth (very faint horizontal stripes) -->
-    <path android:fillColor="#0E1520"
-          android:pathData="M19,36 L89,36 L89,38 L19,38 Z" />
-    <path android:fillColor="#0E1520"
-          android:pathData="M19,44 L89,44 L89,46 L19,46 Z" />
-
-    <!-- ── Large bold ">" prompt character ──────────────────────────── -->
-    <!--
-        Path geometry:
-          Back-top  : (22, 38)
-          Tip-center: (62, 64)
-          Back-bot  : (22, 90)
-          Arm width : 12 px
-        Creates a solid filled chevron pointing right.
-    -->
-    <path android:fillColor="#00FF41"
-          android:pathData="M22,38 L62,64 L22,90 L34,90 L74,64 L34,38 Z" />
-
-    <!-- ── Cursor underscore "█" ─────────────────────────────────────── -->
-    <!--
-        Placed 4px to the right of the tip (x=78),
-        vertically aligned near bottom of ">".
-        Width 16px, height 9px.
-    -->
-    <path android:fillColor="#00FF41"
-          android:pathData="M78,78 L78,87 L94,87 L94,78 Z" />
-
+    <!-- Chevron ">" -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="7"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M38,38 L58,54 L38,70"/>
+    <!-- Cursor underscore "_" -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="7"
+        android:strokeLineCap="round"
+        android:pathData="M62,70 L78,70"/>
 </vector>
