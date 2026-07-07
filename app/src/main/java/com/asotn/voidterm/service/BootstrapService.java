@@ -76,15 +76,13 @@ public class BootstrapService extends Service {
         // Step 1: Verify proot/busybox are present. These now ship as real
         // native libraries (jniLibs) that Android extracts + chmod +x at
         // install time, so no runtime extraction is needed at all.
-        broadcastStatus("Checking runtime binaries...");
-        File prootFile = new File(EnvironmentManager.PROOT_BIN);
-        File busyboxFile = new File(EnvironmentManager.BUSYBOX_BIN);
-        if (!prootFile.exists() || !busyboxFile.exists()) {
-            broadcastError("Missing proot/busybox in app package. Reinstall the APK.");
+        broadcastStatus("Extracting runtime binaries (proot/busybox)...");
+        String extractErr = EnvironmentManager.ensureRuntimeBinaries();
+        if (extractErr != null) {
+            broadcastError("Failed to set up proot/busybox\n\n" + extractErr);
             return;
         }
-        if (!prootFile.canExecute()) prootFile.setExecutable(true, false);
-        if (!busyboxFile.canExecute()) busyboxFile.setExecutable(true, false);
+        File busyboxFile = new File(EnvironmentManager.BUSYBOX_BIN);
 
         // Pre-flight diagnostic: actually run busybox on THIS device and
         // report what really happens, instead of assuming. This is the

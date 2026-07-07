@@ -17,6 +17,9 @@ import android.os.Build;
 import android.util.Log;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,15 +62,15 @@ public final class EnvironmentManager {
         KALI_ROOTFS_DIR = FILES_DIR + "/kali-rootfs";
         HOME_DIR         = KALI_ROOTFS_DIR + "/root";
 
-        // proot / busybox are shipped as jniLibs (lib<name>.so under the app's
-        // nativeLibraryDir). Android guarantees these are extracted to disk
-        // with the executable bit set at install time, on every Android
-        // version — unlike files copied from assets/ at runtime, which can
-        // be blocked by W^X / noexec restrictions on newer Android versions.
-        String nativeDir = appContext.getApplicationInfo().nativeLibraryDir;
-        PROOT_BIN        = nativeDir + "/libproot.so";
-        BUSYBOX_BIN      = nativeDir + "/libbusybox.so";
-        PROOT_LOADER_BIN = nativeDir + "/libprootloader.so";
+        // proot / busybox ship as plain assets (never touched by AGP's
+        // native-library packaging/strip pipeline, which was silently
+        // corrupting them when they lived under jniLibs). They are
+        // extracted once to BIN_DIR and chmod +x'd — see
+        // ensureRuntimeBinaries() below, called from BootstrapService
+        // before first use.
+        PROOT_BIN        = BIN_DIR + "/proot";
+        BUSYBOX_BIN      = BIN_DIR + "/busybox";
+        PROOT_LOADER_BIN = BIN_DIR + "/prootloader";
 
         for (String dir : new String[]{BIN_DIR, TMP_DIR, KALI_ROOTFS_DIR}) {
             File f = new File(dir);
@@ -179,4 +182,65 @@ public final class EnvironmentManager {
     // matched to this device's architecture through getKaliArch().
     // See BootstrapService.runBootstrap().
     // -------------------------------------------------------------------
+
+    /**
+     * Extracts proot/busybox/prootloader from assets/bin/<abi>/ to BIN_DIR
+     * and marks them executable, if not already done. Assets are stored
+     * as plain opaque blobs by AAPT — nothing in the Android build
+     * pipeline strips, compresses-in-place, or otherwise rewrites their
+     * bytes, so this is byte-for-byte reliable regardless of Gradle/AGP
+     * version (unlike the jniLibs "rename as .so" trick, which AGP's
+     * native-library processing can silently corrupt).
+     *
+     * Returns null on success, or a human-readable error string.
+     */
+    public static synchronized String ensureRuntimeBinaries() {
+        File proot = new File(PROOT_BIN);
+        File busybox = new File(BUSYBOX_BIN);
+        File loader = new File(PROOT_LOADER_BIN);
+
+        if (proot.exists() && busybox.exists() && loader.exists()
+                && proot.canExecute() && busybox.canExecute()) {
+            return null; // already extracted this install
+        }
+
+        String abiDir = pickAssetAbiDir();
+        if (abiDir == null) {
+            return "Unsupported CPU architecture: " + String.join(",", Build.SUPPORTED_ABIS);
+        }
+
+        new File(BIN_DIR).mkdirs();
+        String base = "bin/" + abiDir + "/";
+        String err;
+        if ((err = extractAssetFile(base + "proot", PROOT_BIN)) != null) return err;
+        if ((err = extractAssetFile(base + "busybox", BUSYBOX_BIN)) != null) return err;
+        if ((err = extractAssetFile(base + "prootloader", PROOT_LOADER_BIN)) != null) return err;
+        return null;
+    }
+
+    private static String pickAssetAbiDir() {
+        for (String abi : Build.SUPPORTED_ABIS) {
+            if (abi.equals("arm64-v8a")) return "arm64-v8a";
+        }
+        for (String abi : Build.SUPPORTED_ABIS) {
+            if (abi.equals("armeabi-v7a") || abi.equals("armeabi")) return "armeabi-v7a";
+        }
+        return null; // x86/x86_64 devices aren't supported by our proot/busybox builds
+    }
+
+    private static String extractAssetFile(String assetPath, String destPath) {
+        File dest = new File(destPath);
+        try (InputStream in = appContext.getAssets().open(assetPath);
+             FileOutputStream out = new FileOutputStream(dest)) {
+            byte[] buf = new byte[65536];
+            int n;
+            while ((n = in.read(buf)) != -1) out.write(buf, 0, n);
+        } catch (IOException e) {
+            return "Failed to extract " + assetPath + ": " + e.getMessage();
+        }
+        if (!dest.setExecutable(true, false)) {
+            return "Failed to make " + destPath + " executable (chmod denied)";
+        }
+        return null;
+    }
 }
